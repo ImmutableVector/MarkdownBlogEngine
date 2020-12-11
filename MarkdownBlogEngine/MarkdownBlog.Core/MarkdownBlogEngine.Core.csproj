@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.22.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarkdownBlog.Dal\MarkdownBlogEngine.Dal.csproj" />
+    <ProjectReference Include="..\Shared\MarkdownBlogEngine.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

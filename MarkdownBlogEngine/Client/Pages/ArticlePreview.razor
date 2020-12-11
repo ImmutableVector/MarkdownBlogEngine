@@ -1,0 +1,23 @@
+﻿
+    
+<div class="card mb-4">
+    <div class="card-header" style="padding:15px">
+        <h2 class="card-title">@Title</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">@Description</p>
+        <a href="@($"Article/{Id}")" class="btn btn-primary">Read More</a>
+    </div>
+    <div class="card-footer text-muted">
+        Date Published: @DatePublished
+        </div>
+</div>
+
+
+@code {
+    [Parameter] public int Id { get; set; }
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string Description { get; set; }
+    [Parameter] public DateTime DatePublished { get; set; }
+    [Parameter] public string Slug { get; set; }
+}

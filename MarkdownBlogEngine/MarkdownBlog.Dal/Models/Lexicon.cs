@@ -1,0 +1,3 @@
+﻿namespace ProgrammingLexicon.Dal.Models
+{
+}

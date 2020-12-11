@@ -1,0 +1,48 @@
+﻿@page "/article/{Id:int}"
+@using MarkdownBlog.Shared;
+@inject HttpClient Http
+@inject IJSRuntime _jsRuntime
+
+
+@if (article == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (article.Content == null)
+{
+    <p><em>Sorry, there's nothing at this address.</em></p>
+}
+else
+{
+    <div class="col-md-12" style="padding-left:30px;">
+        <h1>@article.Title</h1>
+        <small class="text-muted">Date published @article.DatePublished</small>
+    </div>
+    <hr>
+
+    <div class="float-left" style="padding-left:60px;">
+        <div class="row">
+            <div class="col-md-12">
+                @((MarkupString)article.Content)
+            </div>
+        </div>
+    </div>
+}
+
+@code{
+    [Parameter] public int Id { get; set; }
+
+    private ArticleDto article;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        article = await Http.GetFromJsonAsync<ArticleDto>($"api/article/{Id}");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await _jsRuntime.InvokeVoidAsync("Prism.highlightAll");
+    }
+}
+
